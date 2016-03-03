@@ -2,11 +2,12 @@ var options = [];
 counter = 0;
 for (var i in VOCAB){
 	if (VOCAB[i] != undefined && VOCAB[i] != '') {
-		options[counter] = {[i]: VOCAB[i]};
+		var result = new Object;
+		result[i] = VOCAB[i];
+		options[counter] = result;
 		counter++;
 	}
 }
-
 var mainBox = document.getElementById('mainBox');
 
 function getPair(){
@@ -18,14 +19,14 @@ function getPair(){
 function newWord(){
 	var pick = getPair();
 	var flem = true;
-	mainBox.innerHTML = pick[0];
+	mainBox.textContent = pick[0];
 	mainBox.addEventListener('click', function(){
 		if (flem === true){
-			mainBox.innerHTML = pick[1];
+			mainBox.textContent = pick[1];
 			flem = false;
 		}
 		else {
-			mainBox.innerHTML = pick[0];	
+			mainBox.textContent = pick[0];	
 			flem = true;
 		} 
 	})
