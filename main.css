@@ -1,0 +1,27 @@
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-flow: column;
+}
+#mainBox {
+	height: 300px;
+	width: 600px;
+	background-color: hsl(0, 0%, 95%);
+	border-radius: 10px;
+	border: 1px solid hsl(160, 20%, 70%);
+	color: hsl(175, 70%, 20%);
+	font-size: 80px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+#getWord {
+	height: 100px;
+	width: 200px;
+	margin: 20px;
+	font-size: 40px;
+	background-color: hsl(180, 20%, 40%);
+	border: none;
+}
