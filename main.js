@@ -29,7 +29,6 @@ for (var i in vocab){
 		counter++;
 	}
 }
-
 options = dictionary.slice(0, wordCount);
 
 // Button Event Listeners ====================
@@ -67,41 +66,52 @@ pickDeck.addEventListener('click', function(){
 })
 
 choices.addEventListener('click', function(event){
+	// Get the vocab deck
 	if (event.target.innerHTML == 'Top 10000'){
-		vocab = VOCAB;
-		choices.removeChild(top10000);
-		choices.removeChild(topVerbs);
-		choices.removeChild(fcdekamp);
-		document.body.removeChild(choices);
-	}
+		vocab = VOCAB;}
 	else if (event.target.innerHTML == 'Top 300 Verbs'){
-		vocab = VERBS;
-		choices.removeChild(top10000);
-		choices.removeChild(topVerbs);
-		choices.removeChild(fcdekamp);
-		document.body.removeChild(choices);
-	}
+		vocab = VERBS;}
 	else if (event.target.innerHTML == 'F.C. de Kampionen'){
-		vocab = TVTALK;
-		choices.removeChild(top10000);
-		choices.removeChild(topVerbs);
-		choices.removeChild(fcdekamp);
-		document.body.removeChild(choices);
+		vocab = TVTALK;}
+
+	// Empty the dictionary
+	wordCount = 25;
+	total.innerHTML = 'Total: ' + wordCount;
+	dictionary = []; 
+	counter = 0;
+
+	// Refill the dictionary
+	for (var i in vocab){
+		if (vocab[i] != undefined && vocab[i] != '') {
+			var result = new Object;
+			result[i] = vocab[i];
+			dictionary[counter] = result;
+			counter++;
+		}
 	}
-	else document.body.removeChild(choices);
+
+	// Empty and Refill options
+	options = [];
+	options = dictionary.slice(0, wordCount);
+
+	choices.removeChild(top10000);
+	choices.removeChild(topVerbs);
+	choices.removeChild(fcdekamp);
+	document.body.removeChild(choices);
 })
 
 
 // Functions =================================
 function getPair(){
 	var index = Math.floor(Math.random() * (options.length - 1));
-	var flemish = Object.keys(options[index])[0];
+	console.log(index);
+	// var flemish = Object.keys(options[index])[0];
+	var flemish = Object.keys(options[index]);
 	var english = options[index][flemish];
 	return [flemish, english];
 }
 
 function newWord(){
-	console.log(vocab);
 	var pick = getPair();
 	var flem = true;
 	mainBox.textContent = pick[0];
