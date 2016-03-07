@@ -1,5 +1,11 @@
 // Create variables ==========================
 var dictionary = [], options = [], wordCount = 25, counter = 0;
+var top10000 = document.createElement('p');
+top10000.innerHTML = 'Top 10000';
+var topVerbs = document.createElement('p');
+topVerbs.innerHTML = 'Top 300 Verbs';
+var fcdekamp = document.createElement('p');
+fcdekamp.innerHTML = 'F.C. de Kampionen';
 
 // Pull in the DOM elements ==================
 var mainBox = document.getElementById('mainBox');
@@ -8,9 +14,14 @@ var addWords = document.getElementById('add');
 var subWords = document.getElementById('subtract');
 var total = document.getElementById('total');
 total.innerHTML = 'Total: ' + wordCount;
+var pickDeck = document.getElementById('pickDeck');
+var choices = document.createElement('div');
+choices.id = 'choices';
 
 // Build the dictionary ======================
-for (var i in VOCAB){
+// Pick the library
+var vocab = VOCAB;
+for (var i in vocab){
 	if (VOCAB[i] != undefined && VOCAB[i] != '') {
 		var result = new Object;
 		result[i] = VOCAB[i];
@@ -44,10 +55,45 @@ subWords.addEventListener('click', function(){
 	else wordCount = 0;
 })
 
+pickDeck.addEventListener('click', function(){
+	choices.style.top = 0.35 * window.innerHeight + 'px';
+	choices.style.left = 0.46 * window.innerWidth + 'px';
+
+	choices.appendChild(top10000);
+	choices.appendChild(topVerbs);
+	choices.appendChild(fcdekamp);
+
+	document.body.appendChild(choices);
+})
+
+choices.addEventListener('click', function(event){
+	if (event.target.innerHTML == 'Top 10000'){
+		vocab = VOCAB;
+		choices.removeChild(top10000);
+		choices.removeChild(topVerbs);
+		choices.removeChild(fcdekamp);
+		document.body.removeChild(choices);
+	}
+	else if (event.target.innerHTML == 'Top 300 Verbs'){
+		vocab = VERBS;
+		choices.removeChild(top10000);
+		choices.removeChild(topVerbs);
+		choices.removeChild(fcdekamp);
+		document.body.removeChild(choices);
+	}
+	else if (event.target.innerHTML == 'F.C. de Kampionen'){
+		vocab = TVTALK;
+		choices.removeChild(top10000);
+		choices.removeChild(topVerbs);
+		choices.removeChild(fcdekamp);
+		document.body.removeChild(choices);
+	}
+	else document.body.removeChild(choices);
+})
+
 
 // Functions =================================
 function getPair(){
-	console.log(options.length)
 	var index = Math.floor(Math.random() * (options.length - 1));
 	var flemish = Object.keys(options[index])[0];
 	var english = options[index][flemish];
@@ -55,6 +101,7 @@ function getPair(){
 }
 
 function newWord(){
+	console.log(vocab);
 	var pick = getPair();
 	var flem = true;
 	mainBox.textContent = pick[0];
