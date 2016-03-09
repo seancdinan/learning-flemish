@@ -4,7 +4,7 @@ A simple flashcard-type learning tool.
 ## Three Decks:
 - [10000 most commonly used Dutch words](http://wortschatz.uni-leipzig.de/Papers/top10000nl.txt)
 - [330 most commonly used verbs](http://www.acme2k.co.uk/acme/3star%20verbs.htm)
-- A vocab list of words that come up more than 15 times in the Season 11 of F.C. de Kampionen
+- A vocab list of words that come up more than 15 times in the 11th season of F.C. de Kampionen
 
 ## Options:
 - Able to choose from 3 decks
