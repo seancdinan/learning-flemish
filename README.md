@@ -1,5 +1,5 @@
-# learning-flemish
-A simple flashcard-type learning tool.
+# Learning Flemish
+A simple flashcard-type learning tool to improve Flemish vocab.
 
 ## Three Decks:
 - [10000 most commonly used Dutch words](http://wortschatz.uni-leipzig.de/Papers/top10000nl.txt)
